@@ -3,7 +3,7 @@ Cars learn to drive a custom created track.
 
 <h3><b>Track Generator</b></h3>
 <i>Create a custom track which the cars will learn to drive</i>
-<br />
+<br>
 <ul>
 <li>1. Draw the inner wall of the track
 <li>2. Draw the outer wall of the track
@@ -15,7 +15,7 @@ Cars learn to drive a custom created track.
 <p>- Go to the 'Car Simulation' folder and replace the 'Track.json' with the new exported JSON file</p>
 <p>- You can import this track in the generator again by pressing the import button</p>
 </ul>
-<br/>
+<br>
 <h3><b>Car Simulation</b></h3>
 <i>Cars get trained using a genetic neural network to improve every generation</i>
-<br />
+<br>
