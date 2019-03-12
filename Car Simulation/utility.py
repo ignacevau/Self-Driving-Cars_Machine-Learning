@@ -5,6 +5,7 @@ import json
 
 
 class Vector2:
+    """ Custom 2d vector class """
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
@@ -21,14 +22,18 @@ class Vector2:
     def __truediv__(self, r):
         return Vector2(self.x / r, self.y / r)
 
+
     def rotated(self, angle):
+        """ Return the rotated vector of a given vector over a given angle (degrees) """
         angle *= math.pi / 180
         return Vector2(
             self.x * math.cos(angle) + self.y * math.sin(angle),
             self.y * math.cos(angle) - self.x * math.sin(angle)
         )
 
+
     def rotate(self, angle):
+        """ Rotate a point over a given angle (degrees) """
         angle *= math.pi / 180
         x = self.x
         y = self.y
@@ -37,15 +42,21 @@ class Vector2:
         self.x = x * cos + y * sin
         self.y = y * cos - x * sin
 
+
     def tupled(self):
-        return (self.x, self.y)
+        """ Get tupled version of the vector """
+        return (int(self.x), int(self.y))
+
 
 class Algs:
+    """ Custom class containing algorithms """
     def __init__(self):
         pass
 
+
     @classmethod
     def get_segment_inters(self, p1, p2, p3, p4):
+        """ Get the intersection point of two given segments """
         d13 = p1 - p3
         d34 = p3 - p4
         d12 = p1 - p2
@@ -65,8 +76,10 @@ class Algs:
             return None
         return Vector2(int(p1.x + t*d21.x), int(p1.y + t*d21.y))
 
+
     @classmethod
     def check_segment_inters(self, p1, p2, p3, p4):
+        """ Check whether two given segments intersect """
         d13 = p1 - p3
         d34 = p3 - p4
         d12 = p1 - p2
@@ -85,18 +98,24 @@ class Algs:
             return False
         return True
 
+
     @classmethod
     def get_distance(self, p1, p2):
+        """ Get distance between two points """
         dx = p2.x - p1.x
         dy = p2.y - p1.y
         return math.sqrt(dx*dx + dy*dy)
 
+
 class Import:
+    """ Custom import class """
     def __init__(self):
         pass
 
+
     @classmethod
     def import_json_track(self, track_name):
+        """ Import a track in the JSON format (same folder as the 'utility.py' file!) """
         with open(track_name) as data_file:    
             track_data = json.load(data_file)
             d.WALL_IN = d.WALL_I_EXT = track_data["points1"]
@@ -107,16 +126,22 @@ class Import:
             d.WALL_I_EXT.append(d.WALL_IN[0])
             d.WALL_O_EXT.append(d.WALL_OUT[0])
 
+
 def sigmoid(x):
+    """ Return the sigmoid of a given value x """
     return 1 / (1 + math.exp(-x))
 
+
 def sum_matrix_float(v, r):
+    """ Calculate sum of a matrix and a float """
     a = [None]*len(v)
     for i in range(len(v)):
         a[i] = v[i] + r
     return a
 
+
 def clamp(min, max, value):
+    """ Clamp value between two given values """
     if value < min:
         return min
     elif value > max:

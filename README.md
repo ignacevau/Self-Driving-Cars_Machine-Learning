@@ -3,7 +3,7 @@ Cars learn to drive a custom created track.
 
 <h3><b>Track Generator</b></h3>
 <i>Create a custom track which the cars will learn to drive</i>
-<br>
+<p></p>
 <ul>
 <li>1. Draw the inner wall of the track
 <li>2. Draw the outer wall of the track
@@ -18,4 +18,4 @@ Cars learn to drive a custom created track.
 <br>
 <h3><b>Car Simulation</b></h3>
 <i>Cars get trained using a genetic neural network to improve every generation</i>
-<br>
+<p></p>
