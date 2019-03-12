@@ -13,6 +13,9 @@ def reload():
     optimizer.evolve()
 
 def reset():
+    d.cars = d.next_gen
+    d.gen_count += 1
+
     d.fittest_cars = []
     d.shitty_cars = []    
     d.active_car_count = d.POPULATION_COUNT

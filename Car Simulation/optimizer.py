@@ -8,45 +8,49 @@ import main
 import copy
 
 def evolve():
-    d.NEXT_GEN = []
+    """ Generate a new population based on the result of the earlier one """
+    d.next_gen = []
 
-    # Keep the best car
+    """ Keep the best car """
     net_best = copy.deepcopy(d.best_car.neural_net)
-    d.NEXT_GEN.append(Car(net_best))
+    d.next_gen.append(Car(net_best))
 
-    # Make strong mutations from the best car
+    """ Make strong mutations from the best car """
     for _ in range(d.BEST_CAR_MUTATION_HIGH):
         net = copy.deepcopy(d.best_car.neural_net)
         net = mutate(net, True)
-        d.NEXT_GEN.append(Car(net))
+        d.next_gen.append(Car(net))
 
-    # Make small mutation from the best car
+    """ Make small mutation from the best car """
     for _ in range(d.BEST_CAR_MUTATION_LOW):
         net = copy.deepcopy(d.best_car.neural_net)
         net = mutate(net, False)
-        d.NEXT_GEN.append(Car(net))
+        d.next_gen.append(Car(net))
         
-    # Make mutations from the shitty cars
+    """ Make mutations from the shitty cars """
     for i in range(d.SHITTY_CAR_COUNT):
         net = copy.deepcopy(d.shitty_cars[i].neural_net)
         net = mutate(net, True)
-        d.NEXT_GEN.append(Car(net))
+        d.next_gen.append(Car(net))
 
-    # Make a few randoms
+    """ Make a few randoms """
     for i in range(d.RANDOM_CAR_COUNT):
+        # A new instance of a NN is always random
         net = NeuralNetWork(d.SENSOR_COUNT, d.HIDDEN_LAYERS, 1)
-        d.NEXT_GEN.append(Car(net))
+        d.next_gen.append(Car(net))
 
-    # Cross-Breed the rest of the population
+    """ Cross-Breed the rest of the population """
     children = []
-    breed_count = d.POPULATION_COUNT - len(d.NEXT_GEN)
+    breed_count = d.POPULATION_COUNT - len(d.next_gen)
     for _ in range(breed_count):
+        # Find parents
         mom = d.fittest_cars[random.randint(0, len(d.fittest_cars)-1)]
         dad = mom
         # Make sure the two parent are different
         while dad == mom:
             dad = d.fittest_cars[random.randint(0, len(d.fittest_cars)-1)] 
 
+        # Make children
         net = breed(mom.neural_net, dad.neural_net)
         children.append(net)
 
@@ -56,48 +60,63 @@ def evolve():
     
     # Add the children to the population
     for i in range(len(children)):
-        d.NEXT_GEN.append(Car(children[i]))
+        d.next_gen.append(Car(children[i]))
 
-    d.cars = d.NEXT_GEN
-    d.gen_count += 1
+    """ Start a new simulation with the new population """
     main.reset()
 
 def breed(mom, dad):
-    # Make the child an empty neural network
+    """ Breed two neural networks """
     child = NeuralNetWork(d.SENSOR_COUNT, d.HIDDEN_LAYERS, 1)
-    # weights
+
+    """ weights """
     for i in range(len(child.weights)):
         for j in range(len(child.weights[i])):
             for k in range(len(child.weights[i][j])):
-                # Random value between mom's and dad's weights
+                # Every weight of the child is a random value between
+                # the corresponding weight of its mom and dad
                 child.weights[i][j][k] = random.uniform(mom.weights[i][j][k], dad.weights[i][j][k])
-    # biases
+
+    """ biases """
     for i in range(len(child.biases)):
+        # Bias of the child is a random value between
+        # the corresponding bias of its mom and dad
         child.biases[i] = random.uniform(mom.biases[i], dad.biases[i])
 
     return child
 
-def mutate(net, _strong):
+def mutate(net, strong):
+    """ Mutate a neural network\n
+        Parameters: \n
+        \tnet = the neural net to mutate
+        \tstrong = whether or not the mutation should be strong"""
     b = net.biases
     w = net.weights
-    #weights
+
+    """ weights """
     w_new = net.weights
     for _ in range(d.MUTATED_WEIGHTS_COUNT):
+        # Find a random weight
         layer_i = random.randint(0, len(w)-1)
         input_i = random.randint(0, len(w[layer_i])-1)
         weigth_i = random.randint(0, len(w[layer_i][input_i])-1)
         _w = w[layer_i][input_i][weigth_i]
 
-        if(_strong):
+        # How strong should the weight be mutated
+        if(strong):
             mut_strength = d.MUTATION_STRENGTH_HIGH
         else:
             mut_strength = d.MUTATION_STRENGTH_LOW
 
-        w_new[layer_i][input_i][weigth_i] = clamp(-1.5, 1.5, (_w + random.uniform(-mut_strength, mut_strength)))
+        # Mutate the weight (weights are always clamped between -1.5 and 1.5)
+        rd = random.uniform(-mut_strength, mut_strength)
+        w_new[layer_i][input_i][weigth_i] = clamp(-1.5, 1.5, (_w + rd))
+
     net.weights = w_new
-    #biases
-    b_index = random.randint(0, len(b)-1)
-    b[b_index] += random.uniform(-mut_strength, mut_strength)
+
+    """ biases """
+    index = random.randint(0, len(b)-1)
+    b[index] += random.uniform(-mut_strength, mut_strength)
     net.biases = b
 
     return net

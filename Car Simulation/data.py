@@ -25,7 +25,7 @@ MUTATION_STRENGTH_LOW = 0.2
 # Amount of cars that will be used to breed
 FIT_CARS_COUNT = 8
 
-NEXT_GEN = []
+next_gen = []
 
 active_checkp = None
 cars = []
