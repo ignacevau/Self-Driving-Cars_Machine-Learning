@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html style="background-color: #cadcff">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <div style="margin-top: 0px;" class="container">
+        <div style="margin-top: 1%; margin-left: 19.5%; position: absolute;">
+            <a class="button4" style="height: 35px; width: 220px; font-size: 17px;">Track Generator</a>
+        </div>
+
+        <div id="shortcuts" class="card" style="height: 710px;">
+            <div style="background-color: #4eb5f1; width: 100%; height: 2%; position: relative;"></div>
+            <div style="color: white; margin-bottom: 15px; position: relative; top: 5px; left: 20%; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 20px">Shortcuts</div>
+            
+            <div class="descHeader" style="margin-top: 6px;">
+                <i class="shortcutkeys">Ctrl - hold</i>
+                <div class="shortcutdesc"><i>Insert a new point</i></div>
+            </div>
+            <div class="descHeader" style="margin-top: 6px;">
+                <i class="shortcutkeys">Enter</i>
+                <div class="shortcutdesc"><i>Finish the path</i></div>
+            </div>
+            <div class="descHeader" style="margin-top: 6px;">
+                <i class="shortcutkeys">Left</i>
+                <div class="shortcutdesc"><i>Add a new point</i></div>
+            </div>
+            <div class="descHeader" style="margin-top: 6px;">
+                <i class="shortcutkeys">Left-drag</i>
+                <div class="shortcutdesc"><i>Move a point</i></div>
+            </div>
+            <div class="descHeader" style="margin-top: 6px;">
+                <i class="shortcutkeys">Right</i>
+                <div class="shortcutdesc"><i>Remove a point</i></div>
+            </div>
+            
+            <div style="margin-top: 45px;">
+                <div style="color: white; text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 20px">Checkpoint <br> Mode</div>
+                <label class="switch" style="margin-left: 60px; margin-top: 4px;">
+                    <input id="CheckPointSwitch" type="checkbox" autocomplete="off">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div style="color: white; margin-top: 45px; margin-left: 50px; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 20px">JSON</div>
+            <div style="margin-top: 15px; margin-left: 17px;">
+                    <a id="importBtn" class="button3">Import</a>
+            </div>
+            <div style="margin-top: 10px; margin-left: 17px;">
+                <a id="exportBtn" class="button3">Export</a>
+            </div>
+            <div style="margin-top: 10px; margin-left: -12px;">
+                <a id="setStartPoint" class="button3" style="margin-top: 40px; border-radius: 5px;">Set Startpoint</a>
+            </div>
+        </div>
+
+        <canvas id="myCanvas"></canvas>
+        </div>
+
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
