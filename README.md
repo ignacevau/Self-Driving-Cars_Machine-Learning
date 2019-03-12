@@ -1,8 +1,9 @@
 # CarAI
 Cars learn to drive a custom created track.
 
-<h4><b>Track Generator</b></h4>
+<h3><b>Track Generator</b></h3>
 <i>Create a custom track which the cars will learn to drive</i>
+<br />
 <ul>
 <li>1. Draw the inner wall of the track
 <li>2. Draw the outer wall of the track
@@ -15,5 +16,6 @@ Cars learn to drive a custom created track.
 <p>- You can import this track in the generator again by pressing the import button</p>
 </ul>
 <br/>
-<h4><b>Car Simulation</b></h4>
+<h3><b>Car Simulation</b></h3>
 <i>Cars get trained using a genetic neural network to improve every generation</i>
+<br />
