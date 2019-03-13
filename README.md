@@ -20,10 +20,10 @@ Cars learn to drive a custom created track.
 <h3><b>Car Simulation</b></h3>
 <i>Cars get trained using a genetic neural network to improve every generation</i>
 <p></p>
-<span>All variables to change the simulation can be found in the 'data.py' file</span>
-<span>The car 'sees' the walls through sensors and is rated on how many checkpoints it has collected</span>
-<span>Every car contains its own neural network which takes as inputs the lengths
-of every sensor.</span>
-<span>The neural network outputs a single float between 0 and 1 with < 0.5 equals left and > 0.5 equals right</span>
-<span>Cars which keep rotating without collecting any checkpoints get automatically killed</span>
-<span>The way every new population is generated can be found in the 'optimizer.py' file and can be tweaked in the 'data.py' file</span>
+<li>All variables to change the simulation can be found in the 'data.py' file
+<li>The car 'sees' the walls through sensors and is rated on how many checkpoints it has collected
+<li>Every car contains its own neural network which takes as inputs the lengths
+of every sensor.
+<li>The neural network outputs a single float between 0 and 1 with < 0.5 equals left and > 0.5 equals right
+<li>Cars which keep rotating without collecting any checkpoints get automatically killed
+<li>The way every new population is generated can be found in the 'optimizer.py' file and can be tweaked in the 'data.py' file
