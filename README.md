@@ -23,7 +23,7 @@ Cars learn to drive a custom created track.
 <ul>
 <li><p>All variables to change the simulation can be found in the 'data.py' file</p>
 <li><p>The way every new population is generated can be found in the 'optimizer.py' file and can be tweaked in the 'data.py' file</p>
-<p>  The car 'sees' the walls through sensors and is rated on how many checkpoints it has collected</p>
+<li><p>  The car 'sees' the walls through sensors and is rated on how many checkpoints it has collected</p>
 <p>  Every car contains its own neural network which takes as inputs the lengths</p>
 of every sensor.
 <p>  The neural network outputs a single float between 0 and 1 with < 0.5 equals left and > 0.5 equals right</p>
