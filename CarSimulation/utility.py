@@ -2,6 +2,7 @@ import pygame
 import math
 import data as d
 import json
+import os
 
 
 class Vector2:
@@ -116,7 +117,9 @@ class Import:
     @classmethod
     def import_json_track(self, track_name):
         """ Import a track in the JSON format (same folder as the 'utility.py' file!) """
-        with open(track_name) as data_file:    
+        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+        my_file = os.path.join(THIS_FOLDER, track_name)
+        with open(my_file) as data_file:    
             track_data = json.load(data_file)
             d.WALL_IN = d.WALL_I_EXT = track_data["points1"]
             d.WALL_OUT = d.WALL_O_EXT = track_data["points2"]
