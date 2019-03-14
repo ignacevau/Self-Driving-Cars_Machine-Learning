@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg
 from utility import Vector2, Algs
 import data as d
 from neural_net import NeuralNetWork
@@ -47,7 +47,7 @@ class Car:
 
         # Draw the frame of the car
         car_frame = [self.frame[i].tupled() for i in range(len(self.frame))]
-        pygame.draw.lines(d.SURFACE, color,True, car_frame, 2)
+        pg.draw.lines(d.SURFACE, color,True, car_frame, 2)
 
         # Draw the sensors of the car
         if not self.dead:
@@ -79,6 +79,7 @@ class Car:
         self.check_checkpoint_col()
         self.turn = self.neural_net.forward_prop([self.sensors[i].length for i in range(d.SENSOR_COUNT)])
         self.check_crazy_rotation()
+        self.move()
 
 
     def check_crazy_rotation(self):
@@ -188,9 +189,9 @@ class Car:
 
     def restart_simulation(self):
         """ Restart the simulation """
-        main.update_text()
+        main.draw_text()
         # Wait a second
-        pygame.time.wait(int(d.RESTART_WAIT_TIME*1000))
+        pg.time.wait(int(d.RESTART_WAIT_TIME*1000))
 
         main.reload()
 
@@ -235,9 +236,9 @@ class Sensor:
         # There is an intersection
         if self.inters != None:
             # Draw the intersection point
-            pygame.draw.circle(d.SURFACE, color, self.inters.tupled(), 4)
+            pg.draw.circle(d.SURFACE, color, self.inters.tupled(), 4)
 
-        pygame.draw.line(d.SURFACE, color, self.pos.tupled(), self.end_pos.tupled(), width)
+        pg.draw.line(d.SURFACE, color, self.pos.tupled(), self.end_pos.tupled(), width)
 
 
     def get_wall_collision(self):
