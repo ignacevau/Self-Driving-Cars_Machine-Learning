@@ -1,5 +1,7 @@
 # CarAI
-Cars learn to drive a custom created track.
+Cars learn to drive a custom created track.<br />
+This was made in Python using the Pygame library, you must install this first ([how?](https://www.pygame.org/wiki/GettingStarted))<br />
+Settings can be tweaked in 'data.py' file.
 
 <h3><b>Track Generator</b></h3>
 <i>Create a custom track which the cars will learn to drive
